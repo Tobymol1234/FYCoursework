@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+
+<link rel="stylesheet" href="index.css"/>
+
+  <head> 
+    <head>
+      <p id="date&time"></p><script>
+  //Javascript to display the date and time on my webpage
+  const d = new Date();document.getElementById("date&time").innerHTML = d;</script>
+     
+      <img src="WebBanner2023.png" alt="Banner" class="center" width="1000" height="200"> 
+      <h1><b>ENG0018  Computer  Laboratory 2024/25</b></h1>
+      <h2>Student URN: 6867921</h2>
+    <hr>
+    <title>Investigating the effectiveness of Machine Learning in Cybersecurity and how it defends against Data Mining</title>
+    <hr>
+  </head>
+
+  <body><h1><marquee behavior="scroll" direction="left"><b><i><u>Investigating the effectiveness of Machine Learning in Cybersecurity and its defences against Data Mining</u></i></b></marquee></h1>
+    
+<div class ="navbar">
+  <a href="index.html">Abstract</a>
+  <div class="dropdown">
+    <button class="dropbtn">Research 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="intro.html">Introduction</a>
+      <a href="ml.html">Machine Learning</a>
+      <a href="cyber.html">Cybersecurity</a>
+      <a href="data.html">Data Mining</a>
+    </div>
+  </div>
+  <a href="pp.html">PowerPoint and Recording</a>
+  <a href="refs.html">References</a>
+  
+<script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+
+  <div class="search-box">
+    <div class=""row>
+      <input type="text" id="input-box" placeholder="Search..." autocomplete="off">
+      <button>Search</button>
+    </div>
+    <div class="result-box">
+      <script>
+        let availableKeywords = [
+         'Abstract',
+         'Introduction',
+         'Machine Learning', 
+         'Data Mining',
+         'PowerPoint',
+         'Recording',
+         'References', 
+         ];
+
+         const resultsBox = document.querySelector(".result-box");
+         const inputBox = document.querySelector(".input-box");
+
+         inputBox.onkeyup = function(){
+              let result = [];
+              let input = inputBox.value;
+              if(input.length){
+                result = availableKeywords.filter((keyword)=>{
+                  return keyword.toLowerCase().includes(input.toLowerCase());
+                });
+                console.log(result) ; 
+              }
+              display(result);
+         }
+
+         function display(result){
+            const content = result.map((list)=>{
+              return "<li> " + list + "</li>"
+            }); 
+            resultsBox.innerHTML = "<ul>" + content.join('') + "</ul> "
+         }
+      </script>
+    </div>
+  </div>
+</div>
+      
+
+
+<main>
+ <p>
+  <h2><u>Recording</u></h2>
+  </p>
+
+
+
+<div class="background-video-container">  
+
+  <video class="background-video" autoplay muted loop>
+    <source src="Background video.mp4" type="video/mp4" position="absolute">
+    </video>
+
+ <div class="overlay-content">
+
+</div>
+
+<div class="foreground-video-container">
+<video src="Conference Project PP.mp4" width="800" height="450" controls></video>
+</div>
+
+<div class="button">
+	<a href="Conference Project PP.pptx">Download</a>
+	<p class="top">Project.pptx</p>
+	<p class="bottom">Size: 3.4MB</p>
+</div>
+
+</div>
+
+</body>
+
+<hr>
+
+	  <div id="last-updated">Loading last update time...</div>
+
+    <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+      Verify Last Modified Time
+    </button>
+
+    <script>
+      async function getLastUpdatedTime() {
+        const username = 'FEPSFY6867921';
+        const repo = 'FY6867921';
+
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+
+        try {
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/vnd.github.v3+json',
+            }
+          });
+
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+        }
+
+        const commits = await response.json();
+        if (commits && commits.length > 0) {
+          const lastCommitDate = new Date(commits[0].commit.committer.date);
+          document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+        } else {
+            document.getElementById('last-updated').innerText = `No commits found in the repository.`;
+        }
+        } catch (error) {
+          console.error('Error fetching the last updated time:', error);
+          document.getElementById('last-updated').innerText = `Error fetching update time. Please check the rerpository details.`;
+        }
+      }
+
+      async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verifed from GitHub API.");
+      }
+
+      window.onload = getLastUpdatedTime;
+    </script>
+
+</html>
