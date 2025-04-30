@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+
+<link rel="stylesheet" href="index.css"/>
+
+  <head>
+    <head>
+      <p id="date&time"></p><script>
+  //Javascript to display the date and time on my webpage
+  const d = new Date();document.getElementById("date&time").innerHTML = d;</script>
+     
+      <img src="WebBanner2023.png" alt="Banner" class="center" width="1000" height="200"> 
+      <h1><b>ENG0018  Computer  Laboratory 2024/25</b></h1>
+      <h2>Student URN: 6867921</h2>
+    <hr>
+    <title>Investigating the effectiveness of Machine Learning in Cybersecurity and how it defends against Data Mining</title>
+    <hr>
+  </head>
+
+  <body><h1><marquee behavior="scroll" direction="left"><b><i><u>Investigating the effectiveness of Machine Learning in Cybersecurity and its defences against Data Mining</u></i></b></marquee></h1>
+    
+    <div class ="navbar">
+      <a href="index.html">Abstract</a>
+      <div class="dropdown">
+        <button class="dropbtn">Research 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="intro.html">Introduction</a>
+          <a href="ml.html">Machine Learning</a>
+          <a href="cyber.html">Cybersecurity</a>
+          <a href="data.html">Data Mining</a>
+        </div>
+      </div>
+      <a href="pp.html">PowerPoint and Recording</a>
+      <a href="refs.html">References</a>
+      
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+    
+      <div class="search-box">
+        <div class=""row>
+          <input type="text" id="input-box" placeholder="Search..." autocomplete="off">
+          <button>Search</button>
+        </div>
+        <div class="result-box">
+          <script>
+            let availableKeywords = [
+             'Abstract',
+             'Introduction',
+             'Machine Learning', 
+             'Data Mining',
+             'PowerPoint',
+             'Recording',
+             'References', 
+             ];
+    
+             const resultsBox = document.querySelector(".result-box");
+             const inputBox = document.querySelector(".input-box");
+    
+             inputBox.onkeyup = function(){
+                  let result = [];
+                  let input = inputBox.value;
+                  if(input.length){
+                    result = availableKeywords.filter((keyword)=>{
+                      return keyword.toLowerCase().includes(input.toLowerCase());
+                    });
+                    console.log(result) ; 
+                  }
+                  display(result);
+             }
+    
+             function display(result){
+                const content = result.map((list)=>{
+                  return "<li> " + list + "</li>"
+                }); 
+                resultsBox.innerHTML = "<ul>" + content.join('') + "</ul> "
+             }
+          </script>
+        </div>
+      </div>
+    </div>
+
+<div id="content4">
+ <p>
+  <h2><u>What is Data Mining?</u></h2>
+  </p>
+
+  <p>
+    Data Mining is a process by which data is analysed for patterns and links within large data sets. The combination of ML and statistical analysis has allowed for significant improvements in functionality <i><b><a href="refs.html#Clifton">(Clifton, 2024)</a></b></i> and has created a “versatile tool” <i><b><a href="refs.html#Holdsworth">(Holdsworth, 2024)</a></b></i> that can analyse many types of data for patterns. This ever-evolving technology has proven to be highly beneficial to all aspects of business, ranging from Sales to IT, as shown in Figure 3. Within IT, it is used alongside ML to identify security breaches through changes in company data streams, which is vital to keeping businesses and their data safe from hackers; however, it also has its downsides.  <i><b><a href="refs.html#Holdsworth">(Holdsworth, 2024)</a></b></i>
+</p>
+
+<img src="Diagram4.png" alt="Diagram2" class="center" width="1500" height="400">
+
+    <p>
+      <h5>Figure 3: 8 Most Common Applications of Data Mining <i><a href="refs.html#Munasinghe">(Munasinghe, 2017)</a></i></h5>
+    </p>
+    
+<p>
+  <h2><u>Why does Data Mining pose a threat to Cybersecurity?</u></h2>
+  </p>
+  
+  <p>
+    Although Data Mining is incredibly useful to the government and other organisations, it is also used maliciously by hackers. When hackers are searching for certain information, they use Data Mining to scan entire networks automatically, pinpointing where the desired data can be found. This saves time for the cybercriminals, resulting in organisations needing to defend themselves from more frequent attacks and data breaches. <i><b><a href="refs.html#Smith">(Smith, 2009)</a></b></i>
+  </p>
+
+  <p>
+    <h2><u>How does Machine Learning defend against Data Mining?</u></h2>
+    </p>
+
+<p>
+  In an ideal world, ML and Data Mining would be used with the same intentions, and not be used for nefarious purposes. However, with cybercriminals gaining access to Data Mining technologies, companies have been forced to use Machine Learning algorithms to help defend against these attacks. Since ML and Data Mining are “complementary in nature”, it allows for “development of highly predictive models” <i><b><a href="refs.html#Shams">(Shams, 2023)</a></b></i>, used for analysing data patterns and, identifying possible targets for cybercriminals and improving security measures.
+</p>
+
+<p>
+  To conclude, ML has proven to be a highly effective tool in Cybersecurity and when defending against Data Mining due to its versatile nature and ever-improving efficiency. 
+</p>
+
+</div>
+
+<hr>
+
+<div id="last-updated">Loading last update time...</div>
+    <!-- Verify Button -->
+    <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+        Verify Last Modified Time
+    </button>
+    <script>
+        async function getLastUpdatedTime() {
+            const username = 'FEPSFY6867921';
+            const repo = 'FY6867921';
+           
+            const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+                }
+                const commits = await response.json();
+                if (commits && commits.length > 0) {
+                    const lastCommitDate = new Date(commits[0].commit.committer.date);
+                   
+                    // Displaying the time on load
+                    document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+                } else {
+                    document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+                }
+            } catch (error) {
+                console.error('Error fetching the last updated time:', error);
+                document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+            }
+        }
+        // Function to verify the last update time by re-fetching it from the API
+        async function verifyLastUpdatedTime() {
+            document.getElementById('last-updated').innerText = 'Verifying...';
+            await getLastUpdatedTime();
+            alert("Last modified time has been successfully verified from GitHub API.");
+        }
+        // Initial load to display the time on page load
+        window.onload = getLastUpdatedTime;
+    </script>
+    
+
+    <div id="wordCountDisplay"></div>
+
+    <script>
+        // Function to calculate word count for a specific section
+        function calculateSectionWordCount(selector) {
+            const section = document.querySelector(selector);
+
+            if (!section) {
+                console.error(`No element found with selector: ${selector}`);
+                return 0;
+            }
+
+            // Get the text content of the section
+            const text = section.innerText || section.textContent;
+
+            // Match words using a regular expression
+            const words = text.match(/\b\w+\b/g);
+
+            // Return the word count (if no words, return 0)
+            return words ? words.length : 0;
+        }
+
+        // Function to display the word count
+        function displaySectionWordCount(selector) {
+            const wordCount = calculateSectionWordCount(selector);
+            const displayElement = document.getElementById('wordCountDisplay');
+            
+            if (displayElement) {
+                displayElement.textContent = `Word Count for this page: ${wordCount}`;
+            }
+        }
+
+        // Run the word count calculation when the page loads
+        window.onload = () => {
+            displaySectionWordCount('#content4');
+        }
+    </script>
+
+</html>
