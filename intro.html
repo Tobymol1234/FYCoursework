@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+
+<link rel="stylesheet" href="index.css"/>
+
+  <head> 
+    <head>
+      <p id="date&time"></p><script>
+  //Javascript to display the date and time on my webpage
+  const d = new Date();document.getElementById("date&time").innerHTML = d;</script>
+     
+      <img src="WebBanner2023.png" alt="Banner" class="center" width="1000" height="200"> 
+      <h1><b>ENG0018  Computer  Laboratory 2024/25</b></h1>
+      <h2>Student URN: 6867921</h2>
+    <hr>
+    <title>Investigating the effectiveness of Machine Learning in Cybersecurity and how it defends against Data Mining</title>
+    <hr>
+  </head>
+
+  <body><h1><marquee behavior="scroll" direction="left"><b><i><u>Investigating the effectiveness of Machine Learning in Cybersecurity and its defences against Data Mining</u></i></b></marquee></h1>
+    
+<div class ="navbar">
+  <a href="index.html">Abstract</a>
+  <div class="dropdown">
+    <button class="dropbtn">Research 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="intro.html">Introduction</a>
+      <a href="ml.html">Machine Learning</a>
+      <a href="cyber.html">Cybersecurity</a>
+      <a href="data.html">Data Mining</a>
+    </div>
+  </div>
+  <a href="pp.html">PowerPoint and Recording</a>
+  <a href="refs.html">References</a>
+  
+<script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+
+  <div class="search-box">
+    <div class=""row>
+      <input type="text" id="input-box" placeholder="Search..." autocomplete="off">
+      <button>Search</button>
+    </div>
+    <div class="result-box">
+      <script>
+        let availableKeywords = [
+         'Abstract',
+         'Introduction',
+         'Machine Learning', 
+         'Data Mining',
+         'PowerPoint',
+         'Recording',
+         'References', 
+         ];
+
+         const resultsBox = document.querySelector(".result-box");
+         const inputBox = document.querySelector(".input-box");
+
+         inputBox.onkeyup = function(){
+              let result = [];
+              let input = inputBox.value;
+              if(input.length){
+                result = availableKeywords.filter((keyword)=>{
+                  return keyword.toLowerCase().includes(input.toLowerCase());
+                });
+                console.log(result) ; 
+              }
+              display(result);
+         }
+
+         function display(result){
+            const content = result.map((list)=>{
+              return "<li> " + list + "</li>"
+            }); 
+            resultsBox.innerHTML = "<ul>" + content.join('') + "</ul> "
+         }
+      </script>
+    </div>
+  </div>
+</div>
+
+
+<div id="content1">
+    <p>
+  <h2><u>Introduction</u></h2>
+  </p>
+
+<p>
+  Around the world, company investments in Machine Learning have increased significantly, and “91% of top businesses have reported having ongoing investments in Artificial Intelligence and Machine Learning” <b><i><a href="refs.html#ODonnellan">(O’Donnellan, 2024)</a></i></b>. 
+</p>
+<p >
+  Machine Learning and Cybersecurity are vital in the modern-day world, and with more frequent cyber-attacks taking place, as shown in Figure 2, and new methods to defend against cybercriminals being investigated, it is more important than ever to understand this complex field. This article investigates the effectiveness of ML in Cybersecurity and how ML is used to defend against Data Mining.</p>
+  <p>
+  In this research project, there are 3 sections, which will cover various topics:
+</p>
+
+<dl>
+  <dt><b>Machine Learning:</b></dt>
+  <p></p>
+  <dd>-	What is it?</dd>
+  <dd>-	Uses</dd>
+  <p></p>
+  <dt><b>Cybersecurity:</b></dt>
+  <p></p>
+  <dd>-	What is it and it's importance?</dd>
+  <dd>-	What is the link between Cybersecurity and Machine Learning?</dd>
+  <p></p>
+  <dt><b>Data Mining:</b></dt>
+  <p></p>
+  <dd>-	What is it?</dd>
+  <dd>-	Why does Data Mining pose a threat to Cybersecurity?</dd>
+  <dd>-	How does Machine Learning defend against Data Mining?</dd>
+</dl>
+
+    <img src="Diagram2.png" alt="Diagram2" class="center" width="1500" height="400">
+
+    <p>
+      <h5>Figure 2: Web-attacks globally 24/10/2024 at 13:37 <i><a href="refs.html#Radware">(Radware, 2016)</a></i></h5>
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- Last Update Time-->
+    <div id="last-updated">Loading last update time...</div>
+    <!-- Verify Button -->
+    <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+        Verify Last Modified Time
+    </button>
+    <script>
+        async function getLastUpdatedTime() {
+            const username = 'FEPSFY6867921';
+            const repo = 'FY6867921';
+           
+            const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json',
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+                }
+                const commits = await response.json();
+                if (commits && commits.length > 0) {
+                    const lastCommitDate = new Date(commits[0].commit.committer.date);
+                   
+                    // Displaying the time on load
+                    document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+                } else {
+                    document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+                }
+            } catch (error) {
+                console.error('Error fetching the last updated time:', error);
+                document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+            }
+        }
+        // Function to verify the last update time by re-fetching it from the API
+        async function verifyLastUpdatedTime() {
+            document.getElementById('last-updated').innerText = 'Verifying...';
+            await getLastUpdatedTime();
+            alert("Last modified time has been successfully verified from GitHub API.");
+        }
+        // Initial load to display the time on page load
+        window.onload = getLastUpdatedTime;
+    </script>
+    
+
+<!-- Word Counter-->
+
+    <div id="wordCountDisplay"></div>
+
+    <script>
+        // Function to calculate word count for a specific section
+        function calculateSectionWordCount(selector) {
+            const section = document.querySelector(selector);
+
+            if (!section) {
+                console.error(`No element found with selector: ${selector}`);
+                return 0;
+            }
+
+            // Get the text content of the section
+            const text = section.innerText || section.textContent;
+
+            // Match words using a regular expression
+            const words = text.match(/\b\w+\b/g);
+
+            // Return the word count (if no words, return 0)
+            return words ? words.length : 0;
+        }
+
+        // Function to display the word count
+        function displaySectionWordCount(selector) {
+            const wordCount = calculateSectionWordCount(selector);
+            const displayElement = document.getElementById('wordCountDisplay');
+            
+            if (displayElement) {
+                displayElement.textContent = `Word Count for this page: ${wordCount}`;
+            }
+        }
+
+        // Run the word count calculation when the page loads
+        window.onload = () => {
+            displaySectionWordCount('#content1');
+        };
+        </script>
